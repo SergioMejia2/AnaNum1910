@@ -28,5 +28,10 @@ def biseccion(a=0, b=2, err=10e-8):
             it = it + 1
     return (c_i, it)
 
-(val,it) = biseccion()
+a = 0
+b = 2
+err = 10e-8
+(val,it) = biseccion(a,b,err)
+it_t = math.log10((b-a)/err)/math.log10(2)
+print("El valor teórico de iteraciones es i>", math.ceil(it_t))
 print("El valor es", val, "y las iteraciones son", it)
