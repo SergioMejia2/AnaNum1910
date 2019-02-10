@@ -1,0 +1,30 @@
+1) Según la norma IEEE-754 un número infinito (+inf o -inf) se representa de forma que los bits correspondientes al exponente mínimo se colocan todos en 1 (8 para 32 bits, 11 para 64 bits) y el bit del signo indicará el signo del infinito.
+
+2) En el proceso de redondeo se usa el valor de la siguiente para obtener un resultado más aproximado del valor. El corte (truncamiento) corta el número de cifras decimales sin tener en cuenta las siguientes para el valor de la última cifra. Se puede decir que el redondeo es más exacto en el valor decimal final, sin embargo, un redondeo a n decimales y corte a n decimales podrán ser los mismos dependiendo de la regla usada para el redondeo.
+
+4) 0.4
+
+Según el proceso para convertir un número decimal a su representación en binario el valor será:
+0.4 * 2 = 0.8 -> 0
+0.8 * 2 = 1.6 -> 1
+0.6 * 2 = 1.2 -> 1
+0.2 * 2 = 0.4 -> 0
+0.4 * 2 = 0.8 -> 0
+0.8 * 2 = 1.6 -> 1
+
+0.011001100110011001100110011...
+1.1001100110011001100110011... * 2⁻²
+Sin embargo, el carácter de este número es periódico infinito, por lo que para poder ser representado en un computador se utiliza la norma IEEE 754 para representaciones de números en coma flotante.
+Usando un tamaño de número de 64 bits, dividos en 1 bit para el signo, 11 bits para el exponente mínimo (Biased Exponent) y 52 bits para la precisión de la fracción (Fraction) se encuentra que:
+
+Sig = 0
+Biased Exponent = (1021)10 = (01111111101)2
+Fraction = (1001100110011001100110011001100110011001100110011001=
+
+(0.4)10 ~~ (0011111111011001100110011001100110011001100110011001100110011001)2 = (0.399999999999999966693309261245)
+
+5) Para encontrar el error de conversión al estándar IEEE 754, se usará la fórmula abs(fl(x) - x)/abs(x) <= e_maq/2
+abs(0.399999999999999966693309261245 - 0.4)/abs(0.4) <= 2⁻⁵²/2
+   abs(0.399999999999999966693309261245 - 0.4)/abs(0.4) <= 2⁻⁵³
+   8.32667268468875 × 10^-17 <= 1.110223e-16
+   El error de conversión es por lo tanto ~~ 8.327 * 10⁻¹⁷ o 8.327 * 10⁻¹⁵%
