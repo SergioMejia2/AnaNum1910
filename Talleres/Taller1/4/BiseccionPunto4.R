@@ -86,18 +86,29 @@ biseccion = function(a,b,err) {
     }
   }
   
-  #Grafica de la Solución
+  #Grafica Cercana a la Solución
+  #x = seq(-4,2,0.1)
+  #plot(l,Original(l),type="p",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85),col="orange",xlab="t",ylab="r(t)")
+  #par(new=TRUE)
+  #plot(l,Original2(l),type="p",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85),col="green",xlab="t",ylab="r(t)")
+  #par(new=TRUE)
+  #plot(x,Original(x),type="l",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85), col="red",xlab="t",ylab="r(t)")
+  #par(new=TRUE)
+  #plot(x,Original2(x),type="l", xlim=c(-1.4,-1.65),ylim=c(1.65,1.85), col="blue",xlab="t",ylab="r(t)")
+  #title(main="Gráficas de la Solucion")
+  
+  #Grafica lejana a la Solución
   x = seq(-4,2,0.1)
-  plot(l,Original(l),type="p",xlim=c(-1.5,0.5),ylim=c(-1,3.5),col="orange",xlab="t",ylab="r(t)")
+  plot(l,Original(l),type="p",xlim=c(-3,0),ylim=c(-1,3.5),col="orange",xlab="t",ylab="r(t)")
   par(new=TRUE)
-  plot(l,Original2(l),type="p",xlim=c(-1.5,0.5),ylim=c(-1,3.5),col="green",xlab="t",ylab="r(t)")
+  plot(l,Original2(l),type="p",xlim=c(-3,0),ylim=c(-1,3.5),col="green",xlab="t",ylab="r(t)")
   par(new=TRUE)
-  plot(x,Original(x),type="l",xlim=c(-1.5,0.5),ylim=c(-1,3.5), col="red",xlab="t",ylab="r(t)")
+  plot(x,Original(x),type="l",xlim=c(-3,0),ylim=c(-1,3.5), col="red",xlab="t",ylab="r(t)")
   par(new=TRUE)
-  plot(x,Original2(x),type="l", xlim=c(-1.5,0.5),ylim=c(-1,3.5), col="blue",xlab="t",ylab="r(t)")
+  plot(x,Original2(x),type="l", xlim=c(-3,0),ylim=c(-1,3.5), col="blue",xlab="t",ylab="r(t)")
   title(main="Gráficas de la Solucion")
   
   cat("Iteraciones=",it,"t=",aux," rad ","r(t) = ",Original(aux),"\n")
 }
 
-biseccion(-1,1,10e-8)
+biseccion(-pi/3,-pi/2,10e-8)

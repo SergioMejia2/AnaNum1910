@@ -52,7 +52,7 @@ newton <- function(a,b,err) {
   polar(dim,r,"blue")
   par(new=TRUE)
   polar(dim,r2,"green")
-  title(main="Gráficas de las Funciones")
+  title(main="Gráficas de las Funciones Polares")
   
   x0 = (a+b)/2;
   it = 0
@@ -73,13 +73,13 @@ newton <- function(a,b,err) {
 
   #Grafica Cercana a la Solución
   #x = seq(-4,2,0.1)
-  #plot(l,Original(l),type="p",xlim=c(-0.73,-0.68),ylim=c(1.45,1.55),col="orange",xlab="t",ylab="r(t)")
+  #plot(l,Original(l),type="p",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85),col="orange",xlab="t",ylab="r(t)")
   #par(new=TRUE)
-  #plot(l,Original2(l),type="p",xlim=c(-0.73,-0.68),ylim=c(1.45,1.55),col="green",xlab="t",ylab="r(t)")
+  #plot(l,Original2(l),type="p",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85),col="green",xlab="t",ylab="r(t)")
   #par(new=TRUE)
-  #plot(x,Original(x),type="l",xlim=c(-0.73,-0.68),ylim=c(1.45,1.55), col="red",xlab="t",ylab="r(t)")
+  #plot(x,Original(x),type="l",xlim=c(-1.4,-1.65),ylim=c(1.65,1.85), col="red",xlab="t",ylab="r(t)")
   #par(new=TRUE)
-  #plot(x,Original2(x),type="l", xlim=c(-0.73,-0.68),ylim=c(1.45,1.55), col="blue",xlab="t",ylab="r(t)")
+  #plot(x,Original2(x),type="l", xlim=c(-1.4,-1.65),ylim=c(1.65,1.85), col="blue",xlab="t",ylab="r(t)")
   #title(main="Gráficas de la Solucion")
   
   #Grafica lejana a la Solución
@@ -96,4 +96,4 @@ newton <- function(a,b,err) {
   cat("Iteraciones = ", it, " t = ", x1," rad ","r(t) = ",Original(x1),"\n")
 }
 
-newton(-1,1,10e-8)
+newton(-pi/3,-pi/2,10e-8)
