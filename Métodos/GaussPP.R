@@ -15,12 +15,12 @@ gaussPP = function(A, b){
   # matriz ampliada
   Ab = cbind(A,b)
   
-  # Eliminación
+  # EliminaciÃ³n
   for (k in 1:(n-1)){ # desde columna k=1 hasta k=n-1
     
-    # índice del pivote máximo, en valor absoluto
-    # wich.max( A[k:n,k] ) retorna índice del vector A[k:n,k] = (a_kk, a_(k+1)k,...,a_nk)
-    # Como a_kk tendría índice 1, hay que corregir el índice sumando k-1.
+    # Ã­ndice del pivote mÃ¡ximo, en valor absoluto
+    # wich.max( A[k:n,k] ) retorna Ã­ndice del vector A[k:n,k] = (a_kk, a_(k+1)k,...,a_nk)
+    # Como a_kk tendrÃ­a Ã­ndice 1, hay que corregir el Ã­ndice sumando k-1.
     fila = which.max( abs(A[k:n,k]) ) + k-1
     op = op +2
     Ab[c(k, fila), ] = Ab[c(fila, k), ]
@@ -28,7 +28,7 @@ gaussPP = function(A, b){
     # Si pivote es cero, det A = 0!
     if(A[fila,k]==0) stop("La matriz es singular")
     
-    # Eliminación columna k
+    # EliminaciÃ³n columna k
     for (i in (k+1):n){# debajo de la diagonal
       # Fi = Fi - a_ik/a_kk * Fk, i=k+1,...,n
       Ab[i, ] = Ab[i, ] - Ab[i, k]/Ab[k,k]*Ab[k, ]
@@ -36,7 +36,7 @@ gaussPP = function(A, b){
       }
   }
   
-  # Sustitución hacia atrás-------------------------
+  # SustituciÃ³n hacia atrÃ¡s-------------------------
   # b(i) = A[i, n+1]
   x = rep(NA, times=n)
   x[n] = Ab[n, n+1]/Ab[n,n] # xn = bn/a_nn
