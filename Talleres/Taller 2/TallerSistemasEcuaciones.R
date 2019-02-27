@@ -62,7 +62,7 @@ print(sol)
 
 jacobiPr <- function(A,b, x0, tol){
   x_k = matrix(x0)
-
+  
   it = 0
   repeat
   {
@@ -108,7 +108,7 @@ print(tril1(M, k=1))
 diag1 <- function(M) {
   
   M[col(M)!=row(M)] <- 0
-
+  
   return(M)
 }
 
@@ -258,4 +258,57 @@ print(Q)
 print(R)
 print(Q %*% R)  # = A
 
+#Punto 7
+#a
+library(BB)
+ecuaciones = function(x) {
+  n = length(x)
+  F = rep(NA, n)
+  F[1] = x[1] - x[2]
+  F[2] = x[1]^2 + x[2]^2 -1
+  F
+}
+p0 = c(1,1) # n initial random starting guesses
+sol = BBsolve(par=p0, fn=ecuaciones)
+sol$par
 
+plot(sol$par)
+plot(ecuaciones)
+
+#b
+trigexp = function(x) {
+  
+  #se obtiene el numero de variables del sistema
+  n = length(x)
+  
+  #se llena F con n elementos vacíos
+  F = rep(NA, n)
+  
+  #Se ingresan las ecuaciones del sistema
+  #Primera ecuación: F[1] = 3(x_1)^2 + 2(x_2) - 5 + sin( (x_1)-(x_2) )( sin( (x_1)+(x_2) ) )
+  F[1] = 3*x[1]^2 + 2*x[2] - 5 + sin(x[1] - x[2]) * sin(x[1] + x[2])
+  #tn1 es una secuencia de 2 hasta n-1
+  tn1 = 2:(n-1)
+  #Se ingresan |tn1| ecuaciones, es decir desde la ecuación 2 hasta la n-1
+  F[tn1] = -x[tn1-1] * exp(x[tn1-1] - x[tn1]) + x[tn1] *
+    ( 4 + 3*x[tn1]^2) + 2 * x[tn1 + 1] + sin(x[tn1] -
+                                               x[tn1 + 1]) * sin(x[tn1] + x[tn1 + 1]) - 8
+  #Se ingresa la ecuación n
+  F[n] = -x[n-1] * exp(x[n-1] - x[n]) + 4*x[n] - 3
+  F
+}
+n = 10000
+p0 = runif(n) # n initial random starting guesses
+#se resuelve el sistema trigexp con BBsolve, utilizando n valores iniciales
+sol = BBsolve(par=p0, fn=trigexp)
+#Muestra por pantalla la solución del sistema para cada uno de los n valores iniciales
+sol$par
+
+#Punto 8
+
+N <- 3
+A <- Diag(rep(3,N)) + Diag(rep(-2, N-1), k=-1) + Diag(rep(-1, N-1), k=1)
+x0 <- rep(0, N)
+b = c(4,5,6)
+
+itersolve(A, b, tol=1e-9 , method = "Gauss-Seidel")
