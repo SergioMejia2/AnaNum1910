@@ -268,7 +268,7 @@ ecuaciones = function(x) {
   F[2] = x[1]^2 + x[2]^2 -1
   F
 }
-p0 = c(1,1) # n initial random starting guesses
+p0 = c(1,1) # n initial starting guess
 sol = BBsolve(par=p0, fn=ecuaciones)
 sol$par
 
@@ -278,30 +278,30 @@ plot(ecuaciones)
 #b
 trigexp = function(x) {
   
-  #se obtiene el numero de variables del sistema
+  #Tamaño del vector que llega por parámetro
   n = length(x)
   
-  #se llena F con n elementos vacíos
+  #se crea un vector F vacío
   F = rep(NA, n)
   
-  #Se ingresan las ecuaciones del sistema
-  #Primera ecuación: F[1] = 3(x_1)^2 + 2(x_2) - 5 + sin( (x_1)-(x_2) )( sin( (x_1)+(x_2) ) )
+  #Se enuncian las ecuaciones del sistema
   F[1] = 3*x[1]^2 + 2*x[2] - 5 + sin(x[1] - x[2]) * sin(x[1] + x[2])
-  #tn1 es una secuencia de 2 hasta n-1
+  #Se crea una secuencia de 2 hasta n-1
   tn1 = 2:(n-1)
-  #Se ingresan |tn1| ecuaciones, es decir desde la ecuación 2 hasta la n-1
+  #Se evalúan tn1 ecuaciones
   F[tn1] = -x[tn1-1] * exp(x[tn1-1] - x[tn1]) + x[tn1] *
     ( 4 + 3*x[tn1]^2) + 2 * x[tn1 + 1] + sin(x[tn1] -
                                                x[tn1 + 1]) * sin(x[tn1] + x[tn1 + 1]) - 8
-  #Se ingresa la ecuación n
+  #Se evalúa la última ecuación n
   F[n] = -x[n-1] * exp(x[n-1] - x[n]) + 4*x[n] - 3
+  #Se retorna F
   F
 }
 n = 10000
 p0 = runif(n) # n initial random starting guesses
-#se resuelve el sistema trigexp con BBsolve, utilizando n valores iniciales
+#se halla la solcuión del sistema trigexp usando BBsolve de la librería BB, utilizando n valores iniciales
 sol = BBsolve(par=p0, fn=trigexp)
-#Muestra por pantalla la solución del sistema para cada uno de los n valores iniciales
+#Muestra el vector solución del sistema para cada n valores iniciales
 sol$par
 
 #Punto 8
